@@ -39,7 +39,9 @@ pipeline {
             }
         }
         stage('Clean up Images') {
-            sh 'docker rmi $(sudo docker images -f "dangling=true" -q)'
+            steps {
+                sh 'docker rmi $(sudo docker images -f "dangling=true" -q)'
+            }
         }
         stage('DeployToProduction') {
             when {
