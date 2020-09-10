@@ -38,6 +38,9 @@ pipeline {
                 }
             }
         }
+        stage('Clean up Images') {
+            sh 'docker rmi $(sudo docker images -f "dangling=true" -q)'
+        }
         stage('DeployToProduction') {
             when {
                 branch 'master'
