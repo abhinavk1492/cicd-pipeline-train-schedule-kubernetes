@@ -40,7 +40,7 @@ pipeline {
         }
         stage('Clean up Images') {
             steps {
-                sh 'docker rmi $(sudo docker images -f "dangling=true" -q)'
+                sh 'docker system prune --all'
             }
         }
         stage('DeployToProduction') {
